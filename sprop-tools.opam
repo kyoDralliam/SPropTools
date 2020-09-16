@@ -1,0 +1,29 @@
+opam-version: "2.0"
+version: "dev"
+maintainer: "Kenji Maillard <kenji.maillard@inria.fr>"
+homepage: "https://github.com/kyoDralliam/SPropTools"
+bug-reports: "https://github.com/kyoDralliam/SPropTools/issues"
+dev-repo: "git+https://github.com/kyoDralliam/SPropTools.git"
+
+license: "MIT"
+build: [
+  [make "-j%{jobs}%"]
+]
+install: [
+  [make "install"]
+]
+remove: ["rm" "-R" "%{lib}%/coq/user-contrib/SPropTools"]
+depends: [
+  "coq" {(>= "8.10" | = "dev")}
+]
+
+tags: [ "keyword:strict proposition"]
+authors: [ "Kenji Maillard"]
+
+synopsis: "SPropTools - A minimal toolbox for strict propositions"
+description: """
+This libary contains standard definitions and notations for strict propositions, extending the content of the standard library.
+"""
+url {
+  src: "git+https://github.com/kyoDralliam/SPropTools.git"
+}
