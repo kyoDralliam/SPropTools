@@ -1,7 +1,5 @@
 From Coq Require Export Logic.StrictProp.
 From Coq Require PeanoNat.
-(* From Mon Require Import Base. *)
-(* Conflicts with Coq.Utf8 and provides the same things *)
 
 Set Primitive Projections.
 
