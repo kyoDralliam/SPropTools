@@ -46,8 +46,8 @@ Definition All {A} (P : A -> SProp) : SProp := forall (x:A), P x.
 
 Inductive sand (P Q : SProp) : SProp := | spair : P -> Q -> sand P Q.
 
-Definition sprl [P Q : SProp] : sand P Q -> P := fun '(spair _ _ p _) => p.
-Definition sprr [P Q : SProp] : sand P Q -> Q := fun '(spair _ _ _ q) => q.
+Definition sprl {P Q : SProp} : sand P Q -> P := fun '(spair _ _ p _) => p.
+Definition sprr {P Q : SProp} : sand P Q -> Q := fun '(spair _ _ _ q) => q.
 
 Hint Constructors sand : core.
 
