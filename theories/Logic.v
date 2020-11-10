@@ -46,10 +46,29 @@ Definition All {A} (P : A -> SProp) : SProp := forall (x:A), P x.
 
 Inductive sand (P Q : SProp) : SProp := | spair : P -> Q -> sand P Q.
 
-Definition sprl {P Q : SProp} : sand P Q -> P := fun '(spair _ _ p _) => p.
-Definition sprr {P Q : SProp} : sand P Q -> Q := fun '(spair _ _ _ q) => q.
+Arguments spair [_ _] _ _.
+
+Definition sprl (P Q : SProp) : sand P Q -> P := fun '(spair p _) => p.
+Definition sprr (P Q : SProp) : sand P Q -> Q := fun '(spair _ q) => q.
+
+Arguments sprl [_ _] _.
+Arguments sprr [_ _] _.
 
 Hint Constructors sand : core.
+
+(** Dependent sigma in SProp *)
+
+(* not to be mixed with sSig *)
+Inductive sSigma (P : SProp) (Q : P -> SProp) : SProp := | sdpair (p : P) (q : Q p) : sSigma P Q.
+
+Arguments sdpair [_ _] _ _.
+
+Definition sdfst (P : SProp) (Q : P -> SProp) : sSigma P Q -> P := fun '(sdpair p _) => p.
+Arguments sdfst [_ _] _.
+
+Definition sdsnd (P : SProp) (Q : P -> SProp) : forall (x : sSigma P Q), Q (sdfst x) :=
+  fun x => match x as x0 return Q (sdfst x0) with sdpair p q => q end.
+Arguments sdsnd [_ _] _.
 
 (** Implication *)
 
@@ -89,6 +108,9 @@ Module SPropNotations.
   Notation "s∀ x .. y , p" :=
     (forall x, .. (forall y, p) ..)
       (at level 200, x binder, y binder, right associativity, only parsing).
+  Notation "'sΣ' x .. y , p" :=
+    (sSigma _ (fun x => .. (sSigma _ (fun y => p )) .. ))
+      (at level 200, x binder, y binder, right associativity).
   Notation "p s/\ q" := (sand p q) (at level 80).
   Notation "(s->)" := (s_impl) (only parsing).
   Notation "p s\/ q" := (sor p q) (at level 85).
