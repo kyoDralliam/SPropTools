@@ -1,5 +1,7 @@
 **/*~
 **/*.vo
+**/*.vos
+**/*.vok
 **/*.glob
 **/.coqdeps.d
 **/*.aux
@@ -17,3 +19,4 @@
 **/*.cut
 Makefile.coq
 Makefile.coq.conf
+.Makefile.coq.d
