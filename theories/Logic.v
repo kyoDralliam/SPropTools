@@ -264,3 +264,26 @@ Module SPropAxioms.
       [ |- ?X ≡ ?Y ] => apply (@funext_sprop' _ _ X Y) ; intros x
     end.
 End SPropAxioms.
+
+(** ** Hiding SProp-valued subgoals *)
+
+Definition opaque_sprop_id (P : SProp) (p : P) := p.
+Notation "▣" := (opaque_sprop_id _ _).
+
+(* [sabstract t] works similarly to abstract but wraps the result so that it displays in
+   later goals with an undistinct ▣ *)
+Tactic Notation "sabstract" tactic(t) := (apply opaque_sprop_id; abstract t).
+
+(** ** Tactics to discharge impossible cases *)
+
+(* [sexfalso] changes the goal to sEmpty *)
+Ltac sexfalso := assert sEmpty as [].
+
+(* [sabsurd t] solves the goal with the contradictory SProp-valued term t *)
+Ltac sabsurd t := assert sEmpty as [] by inversion t.
+
+(* [scontradiction tac] solves the goal using the tactic tac to derive a contradiction *)
+Tactic Notation "scontradiction" tactic(t) := (assert sEmpty as [] by sabstract t).
+
+
+

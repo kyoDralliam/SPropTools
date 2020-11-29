@@ -1,3 +1,4 @@
 -Q theories SPropTools
 
 theories/Logic.v
+theories/SquashProperties.v
