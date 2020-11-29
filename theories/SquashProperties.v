@@ -7,7 +7,7 @@ Definition decidable P := { P } + {~ P }.
 
 Class squash_modal X := from_squash : Squash X -> X.
 
-Definition dec_from_squash {P} : decidable P -> squash_modal P :=
+Definition squash_modal_decidable {P} : decidable P -> squash_modal P :=
   fun decP sqP =>
     match decP with
     | left p => p
