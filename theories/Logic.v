@@ -270,9 +270,11 @@ End SPropAxioms.
 Definition opaque_sprop_id (P : SProp) (p : P) := p.
 Notation "▣" := (opaque_sprop_id _ _).
 
+Ltac opacify := apply opaque_sprop_id.
+
 (* [sabstract t] works similarly to abstract but wraps the result so that it displays in
    later goals with an undistinct ▣ *)
-Tactic Notation "sabstract" tactic(t) := (apply opaque_sprop_id; abstract t).
+Tactic Notation "sabstract" tactic(t) := (opacify; abstract t).
 
 (** ** Tactics to discharge impossible cases *)
 
