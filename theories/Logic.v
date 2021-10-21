@@ -241,7 +241,9 @@ Module SPropAxioms.
   (** Propositional extensionality *)
   Import SPropNotations.
 
-  Axiom sprop_ext : forall {p q : SProp}, p = q <-> Box (sand (p -> q) (q -> p)).
+  Monomorphic Axiom SPropext : Set.
+  Existing Class SPropext.
+  Axiom sprop_ext : forall `{SPropext} {p q : SProp}, p s<-> q -> p = q.
 
 
   (** Functional Extensionality *)
