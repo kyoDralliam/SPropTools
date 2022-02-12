@@ -284,7 +284,7 @@ Tactic Notation "sabstract" tactic(t) := (opacify; abstract t).
 Ltac sexfalso := assert sEmpty as [].
 
 (* [sabsurd t] solves the goal with the contradictory SProp-valued term t *)
-Ltac sabsurd t := assert sEmpty as [] by inversion t.
+Ltac sabsurd t := assert sEmpty as [] by (inversion t ; contradiction).
 
 (* [scontradiction tac] solves the goal using the tactic tac to derive a contradiction *)
 Tactic Notation "scontradiction" tactic(t) := (assert sEmpty as [] by sabstract t).
