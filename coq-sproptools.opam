@@ -1,0 +1,33 @@
+# This file was generated from `meta.yml`, please do not edit manually.
+# Follow the instructions on https://github.com/coq-community/templates to regenerate.
+
+opam-version: "2.0"
+maintainer: "kenji@maillard.blue"
+version: "dev"
+
+homepage: "https://github.com/kyoDralliam/sproptools"
+dev-repo: "git+https://github.com/kyoDralliam/sproptools.git"
+bug-reports: "https://github.com/kyoDralliam/sproptools/issues"
+doc: "https://kyoDralliam.github.io/sproptools/"
+license: "MIT"
+
+synopsis: "A minimal toolbox for manipulating strict propositions"
+description: """
+Strict propositions as described in Gilbert et al's paper Definitional
+Proof-Irrelevance without K are accessible in Coq through the sort SProp. This
+library extends Coq's standard library providing more extensive support for
+strict propositions (definitions, notations and tactics)"""
+
+build: [make "-j%{jobs}%"]
+install: [make "install"]
+depends: [
+  "coq" {(>= "8.10" | = "dev")}
+]
+
+tags: [
+  "keyword:strict propositions"
+  "logpath:Sproptools"
+]
+authors: [
+  "Kenji Maillard"
+]

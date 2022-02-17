@@ -1,0 +1,70 @@
+---
+fullname: SPropTools
+shortname: sproptools
+organization: kyoDralliam
+community: false
+action: true
+nix: true
+coqdoc: true
+
+synopsis: A minimal toolbox for manipulating strict propositions
+
+description: |-
+  Strict propositions as described in Gilbert et al's paper Definitional
+  Proof-Irrelevance without K are accessible in Coq through the sort SProp. This
+  library extends Coq's standard library providing more extensive support for
+  strict propositions (definitions, notations and tactics)
+
+license:
+  fullname: MIT License
+  identifier: MIT
+
+publications:
+- pub_url: https://hal.inria.fr/hal-01859964v2/document
+  pub_title: Definitional Proof-Irrelevance without K
+
+authors:
+- name: Kenji Maillard
+  initial: true
+
+maintainers:
+- name: Kenji Maillard
+  nickname: kyoDralliam
+
+opam-file-maintainer: kenji@maillard.blue
+
+opam-file-version: dev
+
+supported_coq_versions:
+  text: 8.10 or later
+  opam: '{(>= "8.10" | = "dev")}'
+
+tested_coq_opam_versions:
+- version: dev
+- version: '8.15'
+- version: '8.14'
+- version: '8.13'
+- version: '8.12'
+
+tested_coq_nix_versions:
+- coq_version: '8.15'
+
+ci_cron_schedule: '10 1 * * 0'
+
+namespace: Sproptools
+
+keywords:
+- name: strict propositions
+
+documentation: |-
+  SPropTools is a small coq library containing definitions and notations for working with strict propositions.
+  Currently the only documentation is directly in the sources.
+
+  ## Building & Installing
+
+  From the top directory
+  ```shell
+  $ make
+  $ make install
+  ```
+---
